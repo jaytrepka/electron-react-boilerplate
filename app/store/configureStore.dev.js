@@ -6,10 +6,17 @@ import { createLogger } from 'redux-logger';
 import rootReducer from '../reducers';
 import * as counterActions from '../actions/counter';
 import type { counterStateType } from '../reducers/counter';
+import * as userActions from '../actions/user';
+import type { userStateType } from '../reducers/user';
 
 const history = createHashHistory();
 
-const configureStore = (initialState?: counterStateType) => {
+const initialState = {
+  counter: counterStateType,
+  user: userStateType || {},
+};
+
+const configureStore = (initialState?: initialState) => {
   // Redux Configuration
   const middleware = [];
   const enhancers = [];
@@ -32,6 +39,7 @@ const configureStore = (initialState?: counterStateType) => {
   const actionCreators = {
     ...counterActions,
     ...routerActions,
+    ...userActions,
   };
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */
@@ -47,6 +55,13 @@ const configureStore = (initialState?: counterStateType) => {
   enhancers.push(applyMiddleware(...middleware));
   const enhancer = composeEnhancers(...enhancers);
 
+  const iniStore = {
+    counter: 3,
+    user: {
+      name: 'tes',
+    },
+  };
+  console.log('store', initialState, iniStore);
   // Create Store
   const store = createStore(rootReducer, initialState, enhancer);
 

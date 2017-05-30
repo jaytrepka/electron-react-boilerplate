@@ -1,5 +1,6 @@
 // @flow
 import { app, Menu, shell, BrowserWindow } from 'electron';
+import { push } from 'react-router-redux';
 
 export default class MenuBuilder {
   mainWindow: BrowserWindow;
@@ -118,7 +119,7 @@ export default class MenuBuilder {
 
   buildDefaultTemplate() {
     const templateDefault = [{
-      label: '&File',
+      label: '&Fishile',
       submenu: [{
         label: '&Open',
         accelerator: 'Ctrl+O'
@@ -164,9 +165,9 @@ export default class MenuBuilder {
           shell.openExternal('http://electron.atom.io');
         }
       }, {
-        label: 'Documentation',
+        label: 'Contact',
         click() {
-          shell.openExternal('https://github.com/atom/electron/tree/master/docs#readme');
+          this.mainWindow.loadURL(`file://${__dirname}/app/index.html`);
         }
       }, {
         label: 'Community Discussions',

@@ -1,0 +1,18 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+}
+
+.menu {
+  display: flex;
+    flex: 1;
+    flex-shrink: 1;
+    background: black;
+    flex-grow: 1;
+}
+
+.page {
+    display: flex;
+    flex: 3;
+}

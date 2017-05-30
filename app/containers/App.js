@@ -1,6 +1,8 @@
 // @flow
 import React, { Component } from 'react';
 import type { Children } from 'react';
+import styles from './App.css';
+import PageMenu from './PageMenu';
 
 export default class App extends Component {
   props: {
@@ -9,8 +11,13 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
-        {this.props.children}
+      <div className={styles.root}>
+        <div className={styles.menu}>
+          <PageMenu />
+        </div>
+        <div className={styles.page}>
+          {this.props.children}
+        </div>
       </div>
     );
   }
